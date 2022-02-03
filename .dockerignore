@@ -1,0 +1,6 @@
+**/.cpcache
+**/.git
+**/target
+**/node_modules
+**/.shadow-cljs
+**/.omni_cache

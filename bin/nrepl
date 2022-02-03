@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+ALIASES="$1"
+
+clojure -A:cider:dev:test$ALIASES 

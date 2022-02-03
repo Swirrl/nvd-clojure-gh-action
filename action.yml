@@ -1,0 +1,36 @@
+name: nvd-clojure Action
+description: Run nvd-clojure in a github action and create an issue with the output
+
+author: Andrew Mcveigh
+
+branding:
+  color: purple
+  icon: git-pull-request
+
+inputs:
+  github_token:
+    description: A GitHub auth token to be able to interact with the issues API
+    required: true
+  ssh_private_key:
+    description: SSH private key, required for access to private github repos
+    required: false
+  aws_access_key_id:
+    description: AWS key id, required for access to S3 bucket maven repos
+    required: false
+  aws_secret_access_key:
+    description: AWS secret key, required for access to S3 bucket maven repos
+    required: false
+  directories:
+    description: 'Search paths for projects (space separated).'
+    required: true
+    default: ''
+
+runs:
+  using: docker
+  image: Dockerfile
+  env:
+    GITHUB_TOKEN: ${{ inputs.github_token }}
+    DIRECTORIES: ${{ inputs.directories }}
+    SSH_PRIVATE_KEY: ${{ inputs.ssh_private_key }}
+    AWS_ACCESS_KEY_ID: ${{ inputs.aws_access_key_id }}
+    AWS_SECRET_ACCESS_KEY: ${{ inputs.aws_secret_access_key }}

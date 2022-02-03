@@ -1,0 +1,38 @@
+.DS_Store
+.settings
+.project
+.classpath
+travis-dist
+.vscode
+
+### Emacs ###
+# -*- mode: gitignore; -*-
+
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+.dir-locals.el
+
+### Intellij ###
+.idea
+*.iml
+
+*.log
+*.tex
+trace.edn
+*.log.gz
+.shadow-cljs
+yarn.lock
+node_modules
+stardog.pid
+*.gz
+
+*id_rsa
+*id_rsa.pub
+gh_token
