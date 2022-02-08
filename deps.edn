@@ -3,4 +3,5 @@
         org.clj-commons/digest {:mvn/version "1.4.100"}
         org.clj-commons/clj-http-lite {:mvn/version "0.4.392"}}
 
- :aliases {:create-issue {:main-opts ["-m" "dev"]}}}
+ :aliases {:nvd-clojure {:jvm-opts ["-Dclojure.main.report=stderr"]}
+           :create-issue {:main-opts ["-m" "dev"]}}}

@@ -8,7 +8,7 @@ if [ "$?" -ne 0 ]; then
   exit 1
 fi
 
-clojure -J-Dclojure.main.report=stderr -M:dummy -m nvd.task.check "" "$CLASSPATH"
+clojure -M:nvd-clojure -m "nvd.task.check" "" "$CLASSPATH"
 
 RESULT=$?
 if [ "$RESULT" -ne 0 ]; then
