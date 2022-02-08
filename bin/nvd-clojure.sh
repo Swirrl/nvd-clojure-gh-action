@@ -2,7 +2,7 @@
 
 DIR=$1
 
-CLASSPATH=$(cd $DIR; clojure -Spath -A:prod)
+CLASSPATH=$(cd $DIR; clojure -Spath)
 
 if [ "$?" -ne 0 ]; then
   exit 1
