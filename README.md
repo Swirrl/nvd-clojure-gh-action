@@ -4,6 +4,18 @@ A simple GitHub action to run
 [nvd-clojure](https://github.com/rm-hull/nvd-clojure) and report an issue when
 there are vulnerabilities reported.
 
+## Warning
+
+This action will create issues on the repository it is activated on. If
+the repository is public then *the issue posted will be public*, and it will
+look like this:
+
+```
+CVEs Found in owner/repo: [CRITICAL, HIGH, MEDIUM, LOW] #1
+```
+
+Ensure that you want this before activating this action on a public repository.
+
 ## Usage
 
 Add a `.github/workflows/main.yml` to your project:
