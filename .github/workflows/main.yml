@@ -1,0 +1,21 @@
+name: Clojure NVD Dependency Checking
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 1 * * 1-5"
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Latest Commit
+        uses: actions/checkout@v2.4.0
+
+      - name: NVD Clojure
+        uses: ./
+        with:
+          directories: example
+          github_token: ${{ secrets.github_token }}
