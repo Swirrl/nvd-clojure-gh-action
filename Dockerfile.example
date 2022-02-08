@@ -1,0 +1,7 @@
+FROM clojure:openjdk-8-tools-deps
+
+WORKDIR /github/workspace
+COPY . /nvd
+COPY example /github/workspace
+
+ENTRYPOINT ["bash", "/nvd/bin/nvd-clojure-gh-action.sh"]
