@@ -1,0 +1,2 @@
+{:deps {duct/core {:mvn/version "0.7.0"}
+        duct/module.web {:mvn/version "0.7.0"}}}
