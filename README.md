@@ -56,6 +56,18 @@ jobs:
 * `aws_access_key_id`: Used to access S3 bucket maven repos.
 * `aws_secret_access_key`: Used to access S3 bucket maven repos.
 
+## Suppressing CVEs
+
+Due to how dependency-check identifies libraries false positives may occur
+(i.e. a CPE was identified that is incorrect).
+
+Add a file in the Clojure project directory named `nvd-clojure-suppress.xml` to
+specify CVE suppressions.
+
+See the [DependencyCheck docs](https://jeremylong.github.io/DependencyCheck/general/suppression.html),
+and the [example project](https://github.com/Swirrl/nvd-clojure-gh-action/tree/master/example)
+for details.
+
 ## Licensing
 
 Copyright © 2022 [Swirrl IT Ltd](https://swirrl.com)
