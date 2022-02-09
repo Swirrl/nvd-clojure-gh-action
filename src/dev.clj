@@ -72,6 +72,7 @@
           :body {:title (format "CVEs Found in %s: [%s]"
                                 path
                                 (string/join ", " severities))
+                 :labels ["CVE" "dependencies"]
                  :body (str content-hash "\n\n" markdown)})))
 
 (defn list-issues [repo]
