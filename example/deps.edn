@@ -1,1 +1,6 @@
-{:deps {duct/module.web {:mvn/version "0.7.3"}}}
+{:deps {grafter.db/grafter.db {:mvn/version "0.8.8"}
+        swirrl/swirrl-auth0 {:git/url "git@github.com:Swirrl/swirrl-auth0.git"
+                             :sha "397536f990469050838d2a1c9c89ca2b4ae5fadf"}}
+ :mvn/repos
+ {"swirrl-jars-releases" {:url "s3://swirrl-jars/releases"}
+  "swirrl-jars-snapshots" {:url "s3://swirrl-jars/snapshots"}}}
