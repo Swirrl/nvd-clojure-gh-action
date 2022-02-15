@@ -1,4 +1,4 @@
-FROM clojure:openjdk-8-tools-deps
+FROM cimg/base:2022.01
 
 WORKDIR /github/workspace
 COPY . /nvd

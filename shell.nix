@@ -5,6 +5,7 @@ in stdenv.mkDerivation {
   name = "nvd-clojure-gh-action";
   buildInputs = [
     pkgs.clojure
+    pkgs.leiningen
     pkgs.openjdk
   ];
   shellHook = ''
