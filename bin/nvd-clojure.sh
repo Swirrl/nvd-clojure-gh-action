@@ -10,7 +10,19 @@ if [ -f nvd-clojure-suppress.xml ]; then
     cat nvd-clojure-suppress.xml
 fi
 
-CLASSPATH=$(cd $DIR; clojure -Spath)
+if [ -z "${BUILD_TOOL}" ]; then
+    BUILD_TOOL=clj
+fi
+
+if [ -z "${CLASSPATH_CMD}" ]; then
+    if [ "${BUILD_TOOL}" == "clj" ]; then
+        CLASSPATH_CMD='clojure -Spath'
+    elif [ "${BUILD_TOOL}" == "lein" ]; then
+        CLASSPATH_CMD='lein classpath'
+    fi
+fi
+
+CLASSPATH=$(cd $DIR; $CLASSPATH_CMD)
 
 if [ "$?" -ne 0 ]; then
   exit 1

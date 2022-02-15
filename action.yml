@@ -24,6 +24,14 @@ inputs:
     description: 'Search paths for projects (space separated).'
     required: true
     default: ''
+  build_tool:
+    description: 'Command to print classpath to terminal'
+    required: true
+    default: 'clj'
+  classpath_cmd:
+    description: 'Command to print classpath to terminal'
+    required: true
+    default: ''
 
 runs:
   using: docker
