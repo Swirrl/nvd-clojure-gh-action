@@ -1,6 +1,14 @@
-docker build -t nvd:latest -f Dockerfile.example .
+PROJECT=$(cd $1 && pwd -P)
+TMP=$(mktemp -d)
+docker build -t nvd:latest .
 docker run \
-       -e SSH_PRIVATE_KEY="$(cat gh_id_rsa)" \
-       -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
-       -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
+       --workdir /github/workspace \
+       -v "${TMP}":"/github/home" \
+       -v "${PROJECT}":"/github/workspace" \
+       -e DIRECTORIES \
+       -e BUILD_TOOL \
+       -e GITHUB_TOKEN \
+       -e SSH_PRIVATE_KEY \
+       -e AWS_ACCESS_KEY_ID \
+       -e AWS_SECRET_ACCESS_KEY \
        nvd:latest
