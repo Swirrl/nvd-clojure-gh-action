@@ -1,5 +1,6 @@
-FROM cimg/base:2022.01
+FROM cimg/clojure:1.10.3
 
+USER root
 WORKDIR /github/workspace
 COPY . /nvd
 
