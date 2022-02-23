@@ -32,6 +32,10 @@ inputs:
     description: 'Command to print classpath to terminal'
     required: true
     default: ''
+  fail_on_cve:
+    description: 'Fail the action when CVEs discovered'
+    required: true
+    default: 'false'
 
 runs:
   using: docker

@@ -31,9 +31,22 @@ fi
 clojure -M:nvd-clojure -m "nvd.task.check" "$CONFIG" "$CLASSPATH"
 
 RESULT=$?
-if [ "$CREATE_ISSUE" == "true" ]; then
-    if [ "$RESULT" -ne 0 ]; then
-        clojure -M:create-issue
+if [ "$RESULT" -eq 255 ]; then
+    CVES_FOUND=true
+elif [ "$RESULT" -ne 0 ]; then
+    exit $RESULT
+else
+    CVES_FOUND=false
+fi
+
+if [ "$CREATE_ISSUE" == "true" ] && [ "$CVES_FOUND" == "true" ]; then
+    clojure -M:create-issue
+    RESULT2=$?
+    if [ "$RESULT2" -ne 0 ]; then
+        exit $RESULT2
     fi
 fi
-exit $RESULT
+
+if [ "$FAIL_ON_CVE" == "true" ] && [ "$CVES_FOUND" == "true" ]; then
+    exit $RESULT
+fi
