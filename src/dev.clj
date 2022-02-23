@@ -13,31 +13,45 @@
 (def target (io/file target-path))
 (def file (io/file target "dependency-check-report.json"))
 
-(def vulns
-  (with-open [r (io/reader file)]
+(defn file-json [f]
+  (with-open [r (io/reader f)]
     (json/read-json r keyword)))
+
+(def vulns (file-json file))
 
 (def vuln-fmt "  - [%s](https://nvd.nist.gov/vuln/detail/%s) [%s]")
 
-(def issue-markdown
+(defn has-score? [vulnerability]
+  (some #(contains? vulnerability %) [:cvssv2 :cvssv3]))
+
+(defn get-score [vulnerability]
+  (or (get-in vulnerability [:cvssv3 :baseScore])
+      (get-in vulnerability [:cvssv2 :score])
+      0))
+
+(defn vulns->markdown [vulns]
   (->> (:dependencies vulns)
        (filter :vulnerabilities)
        (map (fn [{:keys [fileName vulnerabilities]}]
               (str fileName \newline
                    (->> vulnerabilities
-                        (sort-by (comp :baseScore :cvssv3) >)
+                        (sort-by get-score >)
                         (map (fn [{:keys [name severity]}]
                                (format vuln-fmt name name severity)))
                         (string/join "\n")))))
        (string/join "\n\n")))
 
-(def severities
+(def issue-markdown (vulns->markdown vulns))
+
+(defn get-severities [vulns]
   (->> (:dependencies vulns)
        (mapcat :vulnerabilities)
-       (filter :cvssv3)
-       (sort-by (comp :baseScore :cvssv3) >)
+       (filter has-score?)
+       (sort-by get-score >)
        (map :severity)
        (distinct)))
+
+(def severities (get-severities vulns))
 
 (def issue-hash
   (digest/md5 issue-markdown))
