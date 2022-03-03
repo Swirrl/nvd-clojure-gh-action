@@ -49,10 +49,12 @@ jobs:
           ## in the projects root directory you can configure 
           ## the location with this variable.
           # directories: sub-project-dir
+          
           ## Uncomment below and setup secrets if you have
           ## need to resolve any `tools.deps` `git/deps` from
           ## private git repositories.
           # ssh_private_key: ${{ secrets.ssh_private_key }}
+          
           ## Uncomment and setup secrets below if you have 
           ## any maven dependencies in AWS/S3-wagon buckets
           # aws_access_key_id: ${{ secrets.aws_access_key_id }}
