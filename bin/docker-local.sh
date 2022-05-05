@@ -1,5 +1,5 @@
-PROJECT=$(cd $1 && pwd -P)
-TMP=$(mktemp -d)
+PROJECT=${PROJECT-$(cd $1 && pwd -P)}
+TMP=${TMP-$(mktemp -d)}
 docker build -t nvd:latest .
 docker run \
        --workdir /github/workspace \

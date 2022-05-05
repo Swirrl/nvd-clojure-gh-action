@@ -2,6 +2,9 @@
 
 DIR=$1
 
+export LEIN_JVM_OPTS="-Duser.home=$HOME"
+# ^^ Otherwise maven looks wherever it wants, E.G., /root/.m2
+
 cp $DIR/nvd-clojure-suppress.xml .
 
 if [ -f nvd-clojure-suppress.xml ]; then
@@ -22,7 +25,7 @@ if [ -z "${CLASSPATH_CMD}" ]; then
     fi
 fi
 
-CLASSPATH=$(cd $DIR; $CLASSPATH_CMD)
+CLASSPATH=$(cd $DIR && $CLASSPATH_CMD)
 
 if [ "$?" -ne 0 ]; then
   exit 1
