@@ -27,7 +27,7 @@ fi
 
 CLASSPATH=$(cd $DIR && $CLASSPATH_CMD)
 
-if [ "$?" -ne 0 ]; then
+if [ "$?" -ne 0 ] || [ -z "$CLASSPATH" ]; then
   exit 1
 fi
 
