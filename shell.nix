@@ -14,6 +14,8 @@ in stdenv.mkDerivation {
     eval $(grep -n2 '\[default\]' ~/.aws/credentials | tail -n2 | cut -d- -f2)
     export AWS_ACCESS_KEY_ID=$aws_access_key_id
     export AWS_SECRET_ACCESS_KEY=$aws_secret_access_key
+    export LEIN_USERNAME=$aws_access_key_id
+    export LEIN_PASSPHRASE=$aws_secret_access_key
     export TARGET_PATH=target/nvd
   '';
 }

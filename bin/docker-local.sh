@@ -1,5 +1,5 @@
-PROJECT=$(cd $1 && pwd -P)
-TMP=$(mktemp -d)
+PROJECT=${PROJECT-$(cd $1 && pwd -P)}
+TMP=${TMP-$(mktemp -d)}
 docker build -t nvd:latest .
 docker run \
        --workdir /github/workspace \
@@ -7,6 +7,7 @@ docker run \
        -v "${PROJECT}":"/github/workspace" \
        -e DIRECTORIES \
        -e BUILD_TOOL \
+       -e CLASSPATH_CMD \
        -e GITHUB_TOKEN \
        -e SSH_PRIVATE_KEY \
        -e AWS_ACCESS_KEY_ID \

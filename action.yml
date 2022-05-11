@@ -43,6 +43,8 @@ runs:
   env:
     GITHUB_TOKEN: ${{ inputs.github_token }}
     DIRECTORIES: ${{ inputs.directories }}
+    BUILD_TOOL: ${{ inputs.build_tool }}
+    CLASSPATH_CMD: ${{ inputs.classpath_cmd }}
     SSH_PRIVATE_KEY: ${{ inputs.ssh_private_key }}
     AWS_ACCESS_KEY_ID: ${{ inputs.aws_access_key_id }}
     AWS_SECRET_ACCESS_KEY: ${{ inputs.aws_secret_access_key }}
